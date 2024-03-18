@@ -1,0 +1,127 @@
+---
+
+---
+
+<header
+  class="px-6 py-5 mb-2 md:px-8 lg:px-16 h-20 w-full z-40 transparent-nav"
+>
+  <h1>Camilo Acosta Dev</h1>
+  <div class="hamburguer">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+  <nav>
+    <ul class="flex">
+      <li><a href="#" class="nav-link">Inicio</a></li>
+      <li><a href="#conocenos" class="nav-link">Conocenos</a></li>
+      <li><a href="#servicios" class="nav-link">Servicios</a></li>
+      <li><a href="#contactanos" class="nav-link">Contactanos</a></li>
+    </ul>
+  </nav>
+</header>
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    width:;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+  }
+
+  .hamburguer {
+    display: none;
+  }
+  nav ul li a {
+    text-decoration: none;
+    display: block;
+    color: #010180;
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: 0.2s;
+    margin: 0 4px;
+  }
+  nav ul li a:hover {
+    color: #ffffff;
+    background: #010180;
+  }
+  @media screen and (max-width: 1024px) {
+    nav ul li a {
+      margin: 0 2px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .hamburguer {
+      display: block;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .hamburguer .line {
+      width: 25px;
+      height: 2px;
+      background: #000000;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    nav {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      width: 100vw;
+      height: 0;
+      background: #f5f5f5;
+      transition: 0.5s;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      overflow: hidden;
+    }
+    .active {
+      height: calc(100vh - 80px);
+    }
+    .active ul {
+      opacity: 1;
+    }
+    nav ul {
+      display: block;
+      width: fit-content;
+      margin: 80px auto 0 auto;
+      text-align: center;
+      transition: 0.5s;
+      opacity: 0;
+    }
+    nav ul li a {
+      margin-bottom: 12px;
+    }
+  }
+  .transparent-nav {
+    background: transparent;
+  }
+</style>
+<script>
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition === 0) {
+      document.querySelector("header")?.classList.add("transparent-nav");
+    } else {
+      document.querySelector("header")?.classList.remove("transparent-nav");
+    }
+  });
+  const hamburguer = document.querySelector(".hamburguer");
+  const nav = document.querySelector("nav");
+
+  hamburguer?.addEventListener("click", () => {
+    nav?.classList.toggle("active");
+  });
+
+  const links = document.querySelectorAll(".nav-link");
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      nav?.classList.remove("active");
+    });
+  });
+</script>
